@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+
+.animation-slide {
+  animation: move 20s linear infinite;
+  
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media all and (max-width: 780px) {
+    .navbar{
+    width: 100%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.navbar-img{
+  height: 30px;
+}
+.nav-links{
+  font-size: 0.7rem;
+  display: flex;
+  gap: 10px;
+}
+.logout-btn{
+  padding: 4px 1px;
+  font-size: 0.7rem;
+}
+.heading{
+  gap: 0px;
+  flex-direction: column;
+  padding: 0px;
+}
+.h-img{
+  height: 150px;
+  width: 100px;
+}
+.h-search{
+  margin-left: 40px;
+}
+.job-page{
+  display: flex;
+  flex-direction: column;
+}
+.job-page1{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.details{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.details1{
+  width: 100%;
+}
+.details2{
+  width: 100%;
+}
+}
