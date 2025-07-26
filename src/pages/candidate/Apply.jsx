@@ -1,9 +1,9 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { instance } from '../../components/config'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { asyncupdateuser } from '../../redux/actions/userAction'
+import instance from '../../components/config'
 
 const Apply = () => {
     const {register, handleSubmit} = useForm()

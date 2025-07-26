@@ -1,6 +1,6 @@
 import axios from "axios"
-import { instance } from "../../components/config"
 import { loadjobs } from "../reducers/jobSlice"
+import instance from "../../components/config"
 
 export const asyncloadjobs = () => async(dispatch, getState) =>{
     try {

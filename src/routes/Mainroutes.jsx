@@ -11,6 +11,7 @@ import Apply from '../pages/candidate/Apply'
 import Findjob from '../pages/candidate/Findjob'
 import UpdateJobPage from '../pages/recruiter/UpdateJobPage'
 import Auth from './Auth'
+import Unauth from './Unauth'
 
 
 const Mainroutes = () => {
@@ -28,8 +29,16 @@ const Mainroutes = () => {
                 <Postjob />
                 </Auth>
                 }/>
-            <Route path='/signin' element={<Signin />}/>
-            <Route path='/signup' element={<Signup />}/>
+            <Route path='/signin' element={
+              <Unauth>
+              <Signin />
+              </Unauth>
+              }/>
+            <Route path='/signup' element={
+              <Unauth>
+              <Signup />
+              </Unauth>
+              }/>
             <Route path='/about' element={
               <Auth>
               <About />

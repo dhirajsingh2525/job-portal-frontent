@@ -1,7 +1,10 @@
 
 import axios from "axios"
 import { setUser } from "../reducers/userSlice"
-import { instance } from "../../components/config"
+import instance from "../../components/config"
+
+
+
 
 
 export const asyccurrentuser = () => async(dispatch, getState) =>{
