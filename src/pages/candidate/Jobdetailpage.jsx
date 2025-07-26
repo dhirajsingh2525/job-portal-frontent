@@ -52,4 +52,4 @@ const Jobdetailpage = () => {
   )
 }
 
-export default Jobdetailpage
+export default Jobdetailpage;

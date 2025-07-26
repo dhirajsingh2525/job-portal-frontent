@@ -20,7 +20,7 @@ const App = () => {
   
   
   return (
-    <div >
+    <div className='main-div'>
       {user &&
       <Nav /> }
    <Mainroutes />

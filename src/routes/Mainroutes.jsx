@@ -9,6 +9,8 @@ import About from '../pages/candidate/About'
 import Profile from '../pages/candidate/Profile'
 import Apply from '../pages/candidate/Apply'
 import Findjob from '../pages/candidate/Findjob'
+import UpdateJobPage from '../pages/recruiter/UpdateJobPage'
+import Auth from './Auth'
 
 
 const Mainroutes = () => {
@@ -16,17 +18,44 @@ const Mainroutes = () => {
     <div>
         <Routes> 
             <Route path='/' element={<Home />}/>
-            <Route path='/findjob' element={ <Findjob />
+            <Route path='/findjob' element={
+              <Auth>
+               <Findjob />
+               </Auth>
                 }/>
             <Route path='/postjob' element={
+              <Auth>
                 <Postjob />
+                </Auth>
                 }/>
             <Route path='/signin' element={<Signin />}/>
             <Route path='/signup' element={<Signup />}/>
-            <Route path='/about' element={<About />}/>
-            <Route path='/profile' element={<Profile />}/>
-            <Route path='/job-detail/:id' element={<Jobdetailpage />}/>
-            <Route path='/apply/:id' element={<Apply />}/>
+            <Route path='/about' element={
+              <Auth>
+              <About />
+              </Auth>
+              }/>
+            <Route path='/profile' element={
+              <Auth>
+              <Profile />
+              </Auth>
+              }/>
+            <Route path='/job-detail/:id' element={
+              <Auth>
+              <Jobdetailpage />
+              </Auth>
+              }/>
+            <Route path='/apply/:id' element={
+              <Auth>
+              <Apply />
+              </Auth>
+              }/>
+            <Route path="/update-job/:id" element={
+              <Auth>
+              <UpdateJobPage />
+              </Auth>
+              } />
+
         </Routes>
     </div>
   )

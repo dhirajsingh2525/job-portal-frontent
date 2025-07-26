@@ -7,7 +7,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { asyncsignupuser } from '../../../redux/actions/userAction'
 
 const Signup = () => {
-    const {register, handleSubmit, formState} = useForm()
+    const {register, handleSubmit} = useForm()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -18,7 +18,7 @@ const Signup = () => {
       navigate('/signin')
     }
   return (
-   <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+   <div className="min-h-screen bg-gray-800 flex items-center justify-center px-4">
       <div className="bg-white w-full max-w-md shadow-xl rounded-2xl p-8">
     
         <div className="text-center mb-6">

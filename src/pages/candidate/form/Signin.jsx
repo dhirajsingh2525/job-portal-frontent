@@ -6,20 +6,23 @@ import { FaUserCog } from 'react-icons/fa'
 import { asycsigninuser } from '../../../redux/actions/userAction'
 
 const Signin = () => {
-   const {register, handleSubmit, formState} = useForm()
+   const {register, handleSubmit} = useForm()
      const navigate = useNavigate()
      const dispatch = useDispatch();
 
-    const submitHandler = (data) =>{
-      dispatch(asycsigninuser(data))
-      navigate('/')
-       
-    }
+  const submitHandler =   (data) => {
+    dispatch(asycsigninuser(data))
+          navigate('/findjob');
+   
+  console.log(data)
+};
+
+
   return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-gray-800 flex items-center justify-center px-4">
       <div className="bg-white w-full max-w-md shadow-xl rounded-2xl p-8">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Account Settings</h2>
+          <h2 className="text-2xl font-bold text-gray-800">log in </h2>
           <FaUserCog className="text-4xl text-emerald-600 mx-auto mt-2" />
         </div>
 
@@ -66,4 +69,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default Signin 

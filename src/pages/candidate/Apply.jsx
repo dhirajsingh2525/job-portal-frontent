@@ -2,11 +2,13 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { instance } from '../../components/config'
 import { useDispatch } from 'react-redux'
-import { asyncupateuser } from '../../redux/actions/userAction'
+import { useNavigate } from 'react-router-dom'
+import { asyncupdateuser } from '../../redux/actions/userAction'
 
 const Apply = () => {
     const {register, handleSubmit} = useForm()
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     let updatejob = []
 
     const submitHandler = async (data) =>{
@@ -14,19 +16,17 @@ const Apply = () => {
       const  newApplications = {
             ...data,
         }
-        try {
-            const {data} = await instance.get(`/users/${users.id}`)
+           try {
+             const {data} = await instance.get(`/users/${users.id}`)
 
              updatejob = [...data.appliedjob, newApplications]
-            console.log(data)
-
-            await instance.patch(`/users/${users.id}`,  {
-                  appliedjob : updatejob
-                })
-        } catch (error) {
-        console.log(error)
-        }
-      dispatch(asyncupateuser(users.id, {appliedjob: updatejob}))    
+            console.log("data",data)
+           } catch (error) {
+             console.log(error)
+           }
+         
+      dispatch(asyncupdateuser(users.id, {appliedjob: updatejob})) 
+      navigate(-1)   
     }
   return (
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-tr from-[#5C2C90] via-[#7C5DC3] to-[#3B82F6] p-6">

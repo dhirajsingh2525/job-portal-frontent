@@ -14,38 +14,82 @@
     transform: translateX(-100%);
   }
 }
+
+.custom-bullets li::marker {
+  color: #f97316; 
+}
+/* index.css ya App.css */
+
+@keyframes softMove {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(15px, -15px);
+  }
+  50% {
+    transform: translate(-15px, 15px);
+  }
+  75% {
+    transform: translate(8px, -8px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.animation-glow {
+  animation: softMove 10s ease-in-out infinite;
+}
+
+
+
 @media all and (max-width: 780px) {
+  .main-div{
+    width: 100%;
+  }
+  .home-anim{
+    margin-bottom: 120px
+  }
+  .animation-slide img{
+    height: 40px;
+  }
     .navbar{
     width: 100%;
-    padding: 3px;
+    height: 40px;
+    padding: 5px 2px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 30px;
+    gap: 14px;
+}
+.nav-text{
+  display: none;
 }
 .navbar-img{
-  height: 30px;
+  height: 40px;
 }
 .nav-links{
   font-size: 0.7rem;
   display: flex;
-  gap: 10px;
+  gap: 3px;
 }
 .logout-btn{
-  padding: 4px 1px;
-  font-size: 0.7rem;
+  padding: 5px 4px;
+  font-size: 6px;
 }
 .heading{
   gap: 0px;
+  height: 20%;
   flex-direction: column;
-  padding: 0px;
+  padding: 20px;
 }
 .h-img{
   height: 150px;
   width: 100px;
 }
 .h-search{
-  margin-left: 40px;
+  margin-left: 10px;
 }
 .job-page{
   display: flex;
@@ -55,6 +99,17 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+}
+.about{
+  display: flex;
+  flex-direction: column;
+}
+.animation-glow{
+  width: 10px;
+  height: 10px;
+}
+.about-card{
+  font-size: 7px;
 }
 .details{
   width: 100%;

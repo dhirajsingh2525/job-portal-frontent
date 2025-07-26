@@ -1,5 +1,7 @@
-import { instance } from "../../components/config"
+
+import axios from "axios"
 import { setUser } from "../reducers/userSlice"
+import { instance } from "../../components/config"
 
 
 export const asyccurrentuser = () => async(dispatch, getState) =>{
@@ -15,20 +17,22 @@ export const asyccurrentuser = () => async(dispatch, getState) =>{
         console.log(error)
     }
 }
-export const asycsigninuser = (user) => async(dispatch, getState) =>{
-    try {
-        const {data} = await instance.get('/users?email=' + user.email + "&password=" + user.password)
-        if(data[0]){
-            localStorage.setItem('users', JSON.stringify(data[0]))
-             dispatch(asyccurrentuser())
-             console.log("logged in user")
-        }else{
-          console.log("wrong credentials")
-        }
-    } catch (error) {
-        console.log(error)
+export const asycsigninuser = (user) => async (dispatch) => {
+  try {
+    const { data } = await instance.get('/users?email=' + user.email + "&password=" + user.password);
+    if (data[0]) {
+      localStorage.setItem('users', JSON.stringify(data[0]));
+      dispatch(setUser(data[0]));
+      
+    } else {
+      console.log("please create account !")
     }
-}
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 
 export const asyncsignupuser = (userData) => async(dispatch, getState) =>{
     try {
@@ -39,12 +43,26 @@ export const asyncsignupuser = (userData) => async(dispatch, getState) =>{
     }
 }
 
-export const asyncupateuser = (id, users) => async(dispatch, getState) =>{
+
+export const asyncupdateuser = (id, user) => async(dispatch) => {
     try {
-      const {data} = await instance.patch('/users/'+id, users)
-      localStorage.setItem('users', JSON.stringify(data))
-            dispatch(asyccurrentuser())
+      const { data } = await instance.patch('/users/'+ id, user);
+      localStorage.setItem('user', JSON.stringify(data))
+      dispatch(setUser(data)); 
+      localStorage.setItem('users', JSON.stringify(data));
     } catch (error) {
         console.log(error)
     }
 }
+export const asyncFetchAllUsers = () => async (dispatch) => {
+  try {
+    const { data } = await instance.get("/users");
+    return data; // return directly, not dispatching anything
+  } catch (error) {
+    console.log("Error fetching all users", error);
+    return [];
+  }
+};
+
+
+

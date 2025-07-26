@@ -21,3 +21,22 @@ export const asynccreatejob = (data) => async(dispatch, getState) =>{
          console.log(error)
      }
 }
+
+export const asyncdeletejob = (id) => async(dispatch, getState) =>{
+    try {
+        await instance.delete(`/jobs/${id}`)
+        dispatch(asyncloadjobs())
+        console.log("delted successfully !")
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const asyncupdateJob = (id, data) => async (dispatch, getState) =>{
+    try {
+        await instance.patch(`/jobs/${id}`, data)
+         dispatch(asyncloadjobs())
+    } catch (error) {
+         console.log(error)
+    }
+}
