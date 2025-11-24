@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
- <div className="about min-h-screen bg-zinc-900 flex flex-col items-center py-12 px-4">
+ <div className="about min-h-screen bg-zinc-900 flex flex-col mt-8 items-center py-12 px-4">
   <h1 className="text-center text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-emerald-400 to-orange-400 bg-clip-text text-transparent">
     About Us
   </h1>

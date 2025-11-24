@@ -14,7 +14,7 @@ const Profile = () => {
     );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f1115] via-[#13161c] to-[#0b0d10] text-white px-6 py-12 flex flex-col items-center gap-12">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f1115] mt-8 via-[#13161c] to-[#0b0d10] text-white px-6 py-12 flex flex-col items-center gap-12">
 
       <h1 className="text-5xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
         Your Profile

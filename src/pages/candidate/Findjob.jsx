@@ -43,7 +43,7 @@ const Findjob = () => {
       <div className="absolute top-[15%] left-[20%] w-[420px] h-[420px] bg-emerald-600/20 blur-[150px] rounded-full"></div>
       <div className="absolute bottom-[15%] right-[20%] w-[380px] h-[380px] bg-purple-600/20 blur-[150px] rounded-full"></div>
 
-      <section className="relative z-20 text-center pt-24 pb-20 px-6">
+      <section className="relative z-20 text-center pt-24 mt-10 pb-20 px-6">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
           Discover Your <span className="text-emerald-400">Dream Job</span>
         </h1>
@@ -141,9 +141,9 @@ const Findjob = () => {
                     </button>
                   </div>
                 ) : (
-                  <button className="px-4 py-2 bg-emerald-600 rounded-lg">
+                  <Link  to={`/apply/${job?.id}`} className="px-4 py-2 bg-emerald-600 rounded-lg">
                     Apply
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>

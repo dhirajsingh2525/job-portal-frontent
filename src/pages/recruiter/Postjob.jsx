@@ -23,7 +23,7 @@ const Postjob = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0f12] flex items-center justify-center py-14 px-6">
+    <div className="min-h-screen bg-[#0d0f12] flex items-center mt-8 justify-center py-14 px-6">
 
       <form
         onSubmit={handleSubmit(onSubmit)}

@@ -24,7 +24,7 @@ const UpdateJobPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] flex justify-center items-start py-12 px-4">
+    <div className="min-h-screen bg-[#0F172A] flex justify-center items-start mt-14 py-12 px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-2xl bg-[#1E293B] p-8 rounded-2xl shadow-lg border border-[#334155] space-y-6"

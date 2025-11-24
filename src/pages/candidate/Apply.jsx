@@ -28,7 +28,7 @@ const Apply = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900 p-6">
+    <div className="min-h-screen flex items-center justify-center mt-14 bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900 p-6">
 
       <div className="w-full max-w-2xl  p-8 rounded-3xl border border-white/20 shadow-2xl">
 
