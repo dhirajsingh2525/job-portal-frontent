@@ -26,7 +26,7 @@ export const asyncdeletejob = (id) => async(dispatch, getState) =>{
     try {
         await instance.delete(`/jobs/${id}`)
         dispatch(asyncloadjobs())
-        console.log("delted successfully !")
+        console.log("deleted successfully !")
     } catch (error) {
         console.log(error)
     }

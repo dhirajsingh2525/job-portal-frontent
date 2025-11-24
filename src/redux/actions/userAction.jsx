@@ -1,10 +1,6 @@
-
 import axios from "axios"
 import { setUser } from "../reducers/userSlice"
 import instance from "../../components/config"
-
-
-
 
 
 export const asyccurrentuser = () => async(dispatch, getState) =>{
@@ -50,7 +46,7 @@ export const asyncsignupuser = (userData) => async(dispatch, getState) =>{
 export const asyncupdateuser = (id, user) => async(dispatch) => {
     try {
       const { data } = await instance.patch('/users/'+ id, user);
-      localStorage.setItem('user', JSON.stringify(data))
+     
       dispatch(setUser(data)); 
       localStorage.setItem('users', JSON.stringify(data));
     } catch (error) {

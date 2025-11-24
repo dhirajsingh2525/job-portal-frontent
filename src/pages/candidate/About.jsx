@@ -15,8 +15,6 @@ const About = () => {
 
   <div className="animation-glow absolute top-30px] left-[30%] w-[550px] h-[550px] rounded-full bg-white blur-2xl z-0"></div>
 
-
-
     <div className="about-card absolute text-zinc-200 bg-zinc-700/30 backdrop-blur-xl p-8 rounded-2xl shadow-lg w-full lg:w-1/2 relative z-10">
     <h2 className="text-4xl md:text-5xl font-semibold text-emerald-400 mb-6">
       Job Portal Services

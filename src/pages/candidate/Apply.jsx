@@ -6,137 +6,168 @@ import { asyncupdateuser } from '../../redux/actions/userAction'
 import instance from '../../components/config'
 
 const Apply = () => {
-    const {register, handleSubmit} = useForm()
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    let updatejob = []
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let updatejob = [];
 
-    const submitHandler = async (data) =>{
-        const users = JSON.parse(localStorage.getItem('users'))
-      const  newApplications = {
-            ...data,
-        }
-           try {
-             const {data} = await instance.get(`/users/${users.id}`)
+  const submitHandler = async (data) => {
+    const users = JSON.parse(localStorage.getItem("users"));
 
-             updatejob = [...data.appliedjob, newApplications]
-            console.log("data",data)
-           } catch (error) {
-             console.log(error)
-           }
-         
-      dispatch(asyncupdateuser(users.id, {appliedjob: updatejob})) 
-      navigate(-1)   
+    const newApplications = { ...data };
+
+    try {
+      const { data } = await instance.get(`/users/${users.id}`);
+      updatejob = [...data.appliedjob, newApplications];
+    } catch (error) {
+      console.log(error);
     }
+
+    dispatch(asyncupdateuser(users.id, { appliedjob: updatejob }));
+    navigate(-1);
+  };
+
   return (
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-tr from-[#5C2C90] via-[#7C5DC3] to-[#3B82F6] p-6">
-  <form onSubmit={handleSubmit(submitHandler)} class="w-full max-w-lg bg-white rounded-xl shadow-2xl p-4 space-y-2">
-    <h2 class="text-2xl font-bold text-gray-800 text-center">JOB APPLICATION FORM</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900 p-6">
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Full Name</label>
-      <input
-      {...register("name")}
-       type="text" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
+      <div className="w-full max-w-2xl  p-8 rounded-3xl border border-white/20 shadow-2xl">
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Email Address</label>
-      <input 
-      {...register("email")}
-      type="email"
-       required
-        class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-        />
-    </div>
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-extrabold text-white tracking-wide">
+            Job Application
+          </h1>
+          <p className="text-white/70 text-sm mt-1">
+            Fill out your details carefully. Recruiters prefer clear & complete information.
+          </p>
+        </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-      <input
-      {...register("number")}
-       type="Number" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
-      <div>
-      <label class="block text-sm font-medium text-gray-700">Company Name</label>
-      <input
-      {...register("company")}
-       type="text" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
-      <div>
-      <label class="block text-sm font-medium text-gray-700">Enter your role & location</label>
-      <input
-      {...register("role")}
-       type="Text" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
-     <div>
-      <label class="block text-sm font-medium text-gray-700">Enter your skills</label>
-      <input
-      {...register("skills")}
-       type="Text" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
-     <div>
-      <label class="block text-sm font-medium text-gray-700">Enter your education</label>
-      <input
-      {...register("education")}
-       type="Text" 
-       required 
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none" 
-       />
-    </div>
+        <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Resume</label>
-      <input 
-      {...register("resume")}
-      type="text" 
-      placeholder='Paste Google Drive resume link'
-       required
-        class="mt-1 w-full" 
-        />
+          <div>
+            <label className="block text-sm text-white/80">Full Name</label>
+            <input
+              {...register("name")}
+              type="text"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Email Address</label>
+            <input
+              {...register("email")}
+              type="email"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Phone Number</label>
+            <input
+              {...register("number")}
+              type="number"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Company Name</label>
+            <input
+              {...register("company")}
+              type="text"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">
+              Enter your role & preferred location
+            </label>
+            <input
+              {...register("role")}
+              type="text"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Skills</label>
+            <input
+              {...register("skills")}
+              type="text"
+              required
+              placeholder="Example: React, Node, MongoDB, Tailwind…"
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Education</label>
+            <input
+              {...register("education")}
+              type="text"
+              required
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Resume Link</label>
+            <input
+              {...register("resume")}
+              type="text"
+              required
+              placeholder="Paste Google Drive resume link"
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+            <p className="text-xs text-white/50 mt-1">
+              Make sure link is public so the recruiter can view it.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">Cover Letter</label>
+            <textarea
+              {...register("message")}
+              rows="4"
+              placeholder="Write something meaningful about yourself..."
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            ></textarea>
+          </div>
+
+          <div>
+            <label className="block text-sm text-white/80">LinkedIn Profile (Optional)</label>
+            <input
+              {...register("linkedin")}
+              type="url"
+              placeholder="https://linkedin.com/in/..."
+              className="w-full mt-1 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white outline-none"
+            />
+          </div>
+
+          <div className="text-center">
+            <button
+              type="submit"
+              className="px-8 py-3 bg-yellow-300 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-400"
+            >
+              Submit Application
+            </button>
+          </div>
+
+        </form>
+
+        <p className="text-center text-white/50 text-xs mt-6">
+          By submitting this form, you confirm that all information is accurate.
+        </p>
+
+      </div>
     </div>
+  );
+};
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Cover Letter / Message</label>
-      <textarea 
-      {...register("message")}
-      rows="4"
-       class="mt-1 w-full border border-gray-300 rounded-md p-2 outline-none"></textarea>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">LinkedIn Profile (optional)</label>
-      <input 
-      {...register("linkedin")}
-      type="url" 
-      placeholder='your linkedin url' 
-      class="mt-1 w-full border border-gray-300 rounded-md p-2" 
-      />
-    </div>
-
-    <div class="text-center">
-      <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-md transition">
-        Submit Application
-      </button>
-    </div>
-  </form>
-</div>
-
-  )
-}
-
-export default Apply
+export default Apply;

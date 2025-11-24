@@ -70,4 +70,4 @@ const Mainroutes = () => {
   )
 }
 
-export default Mainroutes 
+export default Mainroutes;

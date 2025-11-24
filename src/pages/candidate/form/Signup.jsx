@@ -1,88 +1,121 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaUserPlus } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
-import { asyncsignupuser } from '../../../redux/actions/userAction'
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { asyncsignupuser } from "../../../redux/actions/userAction";
 
 const Signup = () => {
-    const {register, handleSubmit} = useForm()
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    
-    const submitHandler = (data) => {  
-      data.id = nanoid()
-      data.appliedjob = []
-      dispatch(asyncsignupuser(data))
-      navigate('/signin')
-    }
+  const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const submitHandler = (data) => {
+    data.id = nanoid();
+    data.appliedjob = [];
+    dispatch(asyncsignupuser(data));
+    navigate("/signin");
+  };
+
   return (
-   <div className="min-h-screen bg-gray-800 flex items-center justify-center px-4">
-      <div className="bg-white w-full max-w-md shadow-xl rounded-2xl p-8">
-    
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Create Account</h2>
-          <FaUserPlus className="text-4xl text-emerald-600 mx-auto mt-2" />
+    <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,#1e3a8a,transparent),radial-gradient(circle_at_80%_80%,#065f46,transparent)] opacity-40"></div>
+
+      <h1 className="absolute top-10 text-[110px] md:text-[150px] font-extrabold text-white/5 tracking-wider select-none pointer-events-none">
+        SIGN UP
+      </h1>
+
+      <div className="absolute w-72 h-72 bg-emerald-500/20 blur-3xl rounded-full -top-10 -left-10 animate-pulse"></div>
+
+      <div className="relative bg-white/10  rounded-3xl p-10 w-full max-w-md">
+
+        <div className="text-center">
+          <FaUserPlus className="text-6xl text-emerald-400 mx-auto drop-shadow-lg" />
+          <h2 className="text-4xl font-bold text-white mt-4 tracking-wide">
+            Create Account
+          </h2>
+          <p className="text-gray-300 text-sm mt-1">
+            Start your journey — build your career here.
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit(submitHandler)} className="space-y-5">
+        <form onSubmit={handleSubmit(submitHandler)} className="mt-8 space-y-6">
+
           <div>
-            <label className="block mb-1 text-gray-600">Name</label>
+            <label className="text-gray-300 text-sm block mb-1">
+              Full Name
+            </label>
             <input
               {...register("name")}
               type="text"
-              placeholder="Enter your name"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="John Doe"
+              className="w-full px-4 py-3 bg-black/40 text-white rounded-xl border border-white/20 outline-none focus:border-emerald-400 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-600">Email</label>
+            <label className="text-gray-300 text-sm block mb-1">
+              Email Address
+            </label>
             <input
               {...register("email")}
               type="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              placeholder="example@gmail.com"
+              className="w-full px-4 py-3 bg-black/40 text-white rounded-xl border border-white/20 outline-none focus:border-emerald-400 transition"
               required
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-600">Password</label>
+            <label className="text-gray-300 text-sm block mb-1">
+              Password
+            </label>
             <input
               {...register("password")}
               type="password"
               placeholder="******"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="w-full px-4 py-3 bg-black/40 text-white rounded-xl border border-white/20 outline-none focus:border-emerald-400 transition"
               required
             />
           </div>
+
           <div>
-            <select {...register("role")}>
-              <option value="recruiter">Recruiter</option>
-              <option value="Candidate">Candidate</option>
+            <label className="text-gray-300 text-sm block mb-1">
+              Select Role
+            </label>
+            <select
+              {...register("role")}
+              className="w-full px-4 py-3 bg-black/40 text-white rounded-xl border border-white/20 outline-none focus:border-emerald-400 transition"
+            >
+              <option className="bg-gray-900" value="recruiter">
+                Recruiter
+              </option>
+              <option className="bg-gray-900" value="Candidate">
+                Candidate
+              </option>
             </select>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-md transition"
+            className="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl shadow-xl transition active:scale-95"
           >
-            Submit
+            Create Account
           </button>
         </form>
 
-        <p className="mt-4 text-sm text-center text-gray-600">
-          Already have an account?{" "}
-          <Link to="/signin" className="text-emerald-700 font-medium hover:underline">
-            Sign in
+        <p className="text-center text-gray-300 text-sm mt-6">
+          Already registered?{" "}
+          <Link to="/signin" className="text-emerald-400 hover:underline">
+            Login
           </Link>
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup 
+export default Signup;

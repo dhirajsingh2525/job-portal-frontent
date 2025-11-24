@@ -7,4 +7,4 @@ const Auth = (props) =>{
   
  return user ? props.children : <Navigate to='/signin' />
 }
-export default Auth 
+export default Auth;

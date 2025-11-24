@@ -16,4 +16,4 @@ const Pagination = ({prevjob, nextjob}) => {
   )
 }
 
-export default Pagination
+export default Pagination;
