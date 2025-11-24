@@ -18,7 +18,7 @@ const Jobdetailpage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#0b0d11] text-white flex">
+    <div className="w-full min-h-screen bg-[#0b0d11] text-white flex mt-16">
 
       <div className="w-[38%] bg-[#101217] border-r border-white/5 p-10 flex flex-col gap-10">
 
