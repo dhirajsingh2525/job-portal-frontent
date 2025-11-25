@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { asyncsignupuser } from "../../../redux/actions/userAction";
+import { asyncsignupuser } from "../../redux/actions/userAction";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();

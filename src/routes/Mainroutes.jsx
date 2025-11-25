@@ -2,8 +2,6 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
 import Postjob from '../pages/recruiter/Postjob'
-import Signin from '../pages/candidate/form/Signin'
-import Signup from '../pages/candidate/form/Signup'
 import Jobdetailpage from '../pages/candidate/Jobdetailpage'
 import About from '../pages/candidate/About'
 import Profile from '../pages/candidate/Profile'
@@ -12,6 +10,8 @@ import Findjob from '../pages/candidate/Findjob'
 import UpdateJobPage from '../pages/recruiter/UpdateJobPage'
 import Auth from './Auth'
 import Unauth from './Unauth'
+import Signin from '../pages/LoginForm/Signin'
+import Signup from '../pages/LoginForm/Signup'
 
 
 const Mainroutes = () => {
