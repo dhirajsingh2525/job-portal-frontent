@@ -6,9 +6,9 @@ import Pagination from "../../components/Pagination";
 const Jobdetailpage = () => {
   const { jobs } = useSelector((state) => state.jobReducer);
   const { id } = useParams();
-  const job = jobs.find((job) => job.id == id);
+  const job = jobs.find((job) => job._id == id);
 
-  const index = jobs.findIndex((job) => job.id == id);
+  const index = jobs.findIndex((job) => job._id == id);
 
   const prevjob = jobs[index - 1];
   const nextjob = jobs[index + 1];

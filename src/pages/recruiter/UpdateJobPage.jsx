@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { asyncupdateJob } from "../../redux/actions/jobThunks";
+import { asyncUpdateJob } from "../../redux/actions/jobActions";
 
 const UpdateJobPage = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const UpdateJobPage = () => {
   const navigate = useNavigate();
   const { jobs } = useSelector((state) => state.jobReducer);
 
-  const job = jobs.find((j) => j.id === id);
+  const job = jobs.find((j) => j._id === id);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -19,7 +19,7 @@ const UpdateJobPage = () => {
   }, [job]);
 
   const onSubmit = (data) => {
-    dispatch(asyncupdateJob(id, data));
+    dispatch(asyncUpdateJob(id, data));
     navigate(-1);
   };
 

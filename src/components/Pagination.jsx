@@ -5,11 +5,11 @@ const Pagination = ({prevjob, nextjob}) => {
   return (
     <div className='flex gap-x-10'>
         {prevjob && 
-         <Link to={`/job-detail/${prevjob.id}`}>
+         <Link to={`/job-detail/${prevjob._id}`}>
           <button className="bg-violet-800 px-4 py-2 rounded text-white">⬅ Previous</button>
         </Link>
         }
-       {nextjob && <Link to={`/job-detail/${nextjob.id}`}>
+       {nextjob && <Link to={`/job-detail/${nextjob._id}`}>
              <button className="bg-violet-800 px-4 py-2 rounded text-white">Next ➡</button>
        </Link>}
     </div>

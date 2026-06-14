@@ -1,32 +1,31 @@
 import React from 'react'
+import { applyJob } from "../../apis/api";
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { asyncupdateuser } from '../../redux/actions/userAction'
-import instance from '../../components/config'
+import { useParams } from "react-router-dom";
+
+
+
 
 const Apply = () => {
   const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let updatejob = [];
+  const { id } = useParams();
 
-  const submitHandler = async (data) => {
-    const users = JSON.parse(localStorage.getItem("users"));
+  console.log(id)
+const submitHandler = async (data) => {
+  try {
 
-    const newApplications = { ...data };
+    await applyJob(id, data);
 
-    try {
-      const { data } = await instance.get(`/users/${users.id}`);
-      updatejob = [...data.appliedjob, newApplications];
-    } catch (error) {
-      console.log(error);
-    }
+    alert("Applied Successfully");
 
-    dispatch(asyncupdateuser(users.id, { appliedjob: updatejob }));
     navigate(-1);
-  };
 
+  } catch (error) {
+    console.log(error);
+  }
+};
   return (
     <div className="min-h-screen flex items-center justify-center mt-14 bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900 p-6">
 

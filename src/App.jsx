@@ -1,31 +1,24 @@
 import React, { useEffect } from 'react'
-import Mainroutes from './routes/Mainroutes'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from './redux/reducers/userSlice';
+import Mainroutes from './routes/Mainroutes' 
 import Nav from './components/Nav';
-import { asyccurrentuser } from './redux/actions/userAction';
-import { asyncloadjobs } from './redux/actions/jobThunks';
+import { useDispatch } from 'react-redux';
+import { asyncgetMe } from './redux/actions/userActions';
+
 
 const App = () => {
-  const dispatch = useDispatch();
-  const {user} = useSelector((state) => state.userReducer)
+  const dispatch = useDispatch()
+useEffect(() => {
+dispatch(asyncgetMe());
+}, [dispatch]);
 
-  useEffect(() => {
-    dispatch(asyccurrentuser())
-  }, [])
-
-   useEffect(() => {
-      dispatch(asyncloadjobs())
-    }, [])
-  
   
   return (
     <div className='main-div'>
-      {user &&
-      <Nav /> }
+      <Nav /> 
    <Mainroutes />
     </div>
   )
 }
+
 
 export default App;

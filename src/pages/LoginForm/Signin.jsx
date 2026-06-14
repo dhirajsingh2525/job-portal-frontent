@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaUserShield } from "react-icons/fa";
-import { asycsigninuser } from "../../redux/actions/userAction";
+import { asyncLoginUser } from "../../redux/actions/userActions";
 
 const Signin = () => {
   const { register, handleSubmit } = useForm();
@@ -11,7 +11,7 @@ const Signin = () => {
   const dispatch = useDispatch();
 
   const submitHandler = (data) => {
-    dispatch(asycsigninuser(data));
+    dispatch(asyncLoginUser(data));
     navigate("/findjob");
   };
 

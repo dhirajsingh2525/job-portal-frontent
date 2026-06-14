@@ -3,7 +3,12 @@ import { Navigate } from "react-router-dom"
 
 
 const Auth = (props) =>{
- const {user} = useSelector((state) => state.userReducer)
+ const {user,loading} = useSelector((state) => state.userReducer)
+ 
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
   
  return user ? props.children : <Navigate to='/signin' />
 }

@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FaSearch, FaInstagram, FaLinkedin, FaGithub, FaHeart } from "react-icons/fa";
+import {
+  FaSearch,
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+  FaHeart,
+} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { asyncdeletejob } from "../../redux/actions/jobThunks";
+import { asyncDeleteJob, asyncLoadJobs, asyncUpdateJob
+ } from "../../redux/actions/jobActions";
 
 const Findjob = () => {
   const dispatch = useDispatch();
@@ -13,6 +20,11 @@ const Findjob = () => {
   const { jobs } = useSelector((state) => state.jobReducer);
   const { user } = useSelector((state) => state.userReducer);
 
+console.log(jobs)
+  useEffect(() => {
+    dispatch(asyncLoadJobs());
+  }, [dispatch]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setSearch(searchTerm);
@@ -21,16 +33,15 @@ const Findjob = () => {
   }, [searchTerm]);
 
   const filterjobs = (jobs || []).filter((job) =>
-    job?.title?.toLowerCase().includes(search.toLowerCase())
+    job?.title?.toLowerCase().includes(search.toLowerCase()),
   );
 
   const deleteHandler = (id) => {
-    dispatch(asyncdeletejob(id));
+    dispatch(asyncDeleteJob(id));
   };
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -72,11 +83,10 @@ const Findjob = () => {
       </section>
 
       <div className="flex flex-wrap justify-center gap-10 mt-10 px-4 relative z-20">
-
         {filterjobs.length > 0 ? (
           filterjobs.map((job) => (
             <div
-              key={job?.id}
+              key={job?._id}
               className="
                 w-full sm:w-[85%] md:w-[45%] lg:w-[30%]
                 bg-[#0B0F19]/80 border border-white/10 
@@ -85,7 +95,6 @@ const Findjob = () => {
                 transition-all duration-500
               "
             >
-
               <div className="flex items-center gap-4">
                 <img
                   src={job?.logo}
@@ -118,30 +127,33 @@ const Findjob = () => {
 
               <div className="flex justify-between items-center">
                 <Link
-                  to={`/job-detail/${job?.id}`}
+                  to={`/job-detail/${job?._id}`}
                   className="text-emerald-300 hover:underline"
                 >
                   View Details →
                 </Link>
 
-                {user?.role === "recruiter" && user?.id === job?.postedBy ? (
+                {user?.role === "recruiter" && user?._id === job?.postedBy ? (
                   <div className="flex gap-2">
                     <Link
-                      to={`/update-job/${job?.id}`}
+                      to={`/update-job/${job?._id}`}
                       className="px-3 py-1 bg-yellow-400 text-black rounded-md"
                     >
                       Edit
                     </Link>
 
                     <button
-                      onClick={() => deleteHandler(job?.id)}
+                      onClick={() => deleteHandler(job?._id)}
                       className="px-3 py-1 bg-red-600 rounded-md"
                     >
                       Delete
                     </button>
                   </div>
                 ) : (
-                  <Link  to={`/apply/${job?.id}`} className="px-4 py-2 bg-emerald-600 rounded-lg">
+                  <Link
+                    to={`/apply/${job?._id}`}
+                    className="px-4 py-2 bg-emerald-600 rounded-lg"
+                  >
                     Apply
                   </Link>
                 )}
@@ -154,9 +166,7 @@ const Findjob = () => {
       </div>
       <footer className="mt-28 px-6 pb-12 relative z-20">
         <div className="max-w-6xl mx-auto bg-black/40 p-10 rounded-3xl border border-white/10 backdrop-blur-xl">
-
           <div className="grid md:grid-cols-3 gap-10">
-
             <div>
               <h2 className="text-3xl font-bold">
                 Job<span className="text-emerald-400">Finder</span>
@@ -166,9 +176,15 @@ const Findjob = () => {
               </p>
 
               <div className="flex gap-3 mt-4">
-                <a className="p-2 bg-white/5 rounded-lg"><FaInstagram /></a>
-                <a className="p-2 bg-white/5 rounded-lg"><FaLinkedin /></a>
-                <a className="p-2 bg-white/5 rounded-lg"><FaGithub /></a>
+                <a className="p-2 bg-white/5 rounded-lg">
+                  <FaInstagram />
+                </a>
+                <a className="p-2 bg-white/5 rounded-lg">
+                  <FaLinkedin />
+                </a>
+                <a className="p-2 bg-white/5 rounded-lg">
+                  <FaGithub />
+                </a>
               </div>
             </div>
 
@@ -176,18 +192,30 @@ const Findjob = () => {
               <div>
                 <h4 className="font-semibold">Company</h4>
                 <ul className="text-zinc-400 space-y-2 text-sm mt-2">
-                  <li><Link to="/about">About</Link></li>
-                  <li><Link to="/blog">Blog</Link></li>
-                  <li><Link to="/contact">Contact</Link></li>
+                  <li>
+                    <Link to="/about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="/blog">Blog</Link>
+                  </li>
+                  <li>
+                    <Link to="/contact">Contact</Link>
+                  </li>
                 </ul>
               </div>
 
               <div>
                 <h4 className="font-semibold">Resources</h4>
                 <ul className="text-zinc-400 space-y-2 text-sm mt-2">
-                  <li><Link to="/help">Help</Link></li>
-                  <li><Link to="/privacy">Privacy</Link></li>
-                  <li><Link to="/terms">Terms</Link></li>
+                  <li>
+                    <Link to="/help">Help</Link>
+                  </li>
+                  <li>
+                    <Link to="/privacy">Privacy</Link>
+                  </li>
+                  <li>
+                    <Link to="/terms">Terms</Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -207,15 +235,14 @@ const Findjob = () => {
                 </button>
               </div>
             </div>
-
           </div>
 
           <div className="border-t border-white/10 mt-10 pt-4 text-center text-sm text-zinc-500">
-            © {new Date().getFullYear()} JobFinder • Made with <FaHeart className="inline-block text-red-500" />
+            © {new Date().getFullYear()} JobFinder • Made with{" "}
+            <FaHeart className="inline-block text-red-500" />
           </div>
         </div>
       </footer>
-
     </div>
   );
 };

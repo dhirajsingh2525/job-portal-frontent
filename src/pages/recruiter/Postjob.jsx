@@ -1,35 +1,40 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { asynccreatejob } from "../../redux/actions/jobThunks";
+import { asyncCreateJob } from "../../redux/actions/jobActions";
 
 const Postjob = () => {
   const { register, handleSubmit, reset } = useForm();
   const { user } = useSelector((state) => state.userReducer);
 
   const dispatch = useDispatch();
+const onSubmit = (data) => {
+  const formData = new FormData();
 
-  const onSubmit = (data) => {
-    const skillsArray = data.skills.split(" ");
+  formData.append("title", data.title);
+  formData.append("company", data.company);
+  formData.append("city", data.city);
+  formData.append("country", data.country);
+  formData.append("location", data.location);
+  formData.append("salary", data.salary);
+  formData.append("education", data.education);
+  formData.append("experience", data.experience);
+  formData.append("job_type", data.job_type);
+  formData.append("description", data.description);
+  formData.append("skills", data.skills);
 
-    const finaldata = {
-      ...data,
-      skills: skillsArray,
-      postedBy: user.id,
-    };
+  formData.append("logo", data.logo[0]);
 
-    dispatch(asynccreatejob(finaldata));
-    reset();
-  };
+  dispatch(asyncCreateJob(formData));
+  reset();
+};
 
   return (
     <div className="min-h-screen bg-[#0d0f12] flex items-center mt-8 justify-center py-14 px-6">
-
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-3xl bg-[#12151b] border border-white/10 rounded-3xl p-10 text-white shadow-[0_0_40px_rgba(0,0,0,0.4)] space-y-8"
       >
-
         <div className="text-center mb-4">
           <h1 className="text-4xl font-bold tracking-tight">
             Create a <span className="text-emerald-400">New Job</span>
@@ -60,11 +65,7 @@ const Postjob = () => {
 
           <div className="flex flex-col gap-2">
             <label className="text-sm text-zinc-400">Logo URL</label>
-            <input
-              {...register("logo")}
-              placeholder="https://company-logo.png"
-              className="bg-[#0f1116] border border-white/10 rounded-lg p-3 outline-none"
-            />
+            <input type="file" accept="image/*" {...register("logo")} />
           </div>
 
           <div className="flex flex-col gap-2">
@@ -153,7 +154,8 @@ const Postjob = () => {
             className="bg-[#0f1116] border border-white/10 rounded-lg p-3 outline-none"
           />
           <p className="text-xs text-zinc-500">
-            * Write skills separated by space, e.g.: <span className="text-emerald-400">React Tailwind Figma</span>
+            * Write skills separated by space, e.g.:{" "}
+            <span className="text-emerald-400">React Tailwind Figma</span>
           </p>
         </div>
 

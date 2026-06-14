@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearUser } from "../redux/reducers/userSlice";
 import { Menu, X } from "lucide-react";
+import { asyncLogoutUser } from "../redux/actions/userActions";
 
 const Nav = () => {
   const { user } = useSelector((state) => state.userReducer);
@@ -12,7 +12,7 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
 
   const logoutuser = () => {
-    dispatch(clearUser());
+    dispatch(asyncLogoutUser());
     navigate("/");
   };
 
@@ -48,7 +48,9 @@ const Nav = () => {
             </Link>
           )}
         </div>
+        {user? (
 
+      
         <div className="hidden md:block">
           <button
             onClick={logoutuser}
@@ -57,7 +59,15 @@ const Nav = () => {
             Log Out
           </button>
         </div>
-
+        ): (
+          <Link
+           to="/signin"
+            onClick={logoutuser}
+            className="px-5 py-2 rounded-xl bg-green-600 text-white  font-semibold"
+          >
+            login
+          </Link>
+        )}
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-white"

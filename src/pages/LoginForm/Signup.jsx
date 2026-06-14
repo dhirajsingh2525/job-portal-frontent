@@ -3,8 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
-import { asyncsignupuser } from "../../redux/actions/userAction";
+import { asyncRegisterUser } from "../../redux/actions/userActions";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
@@ -12,9 +11,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const submitHandler = (data) => {
-    data.id = nanoid();
-    data.appliedjob = [];
-    dispatch(asyncsignupuser(data));
+    dispatch(asyncRegisterUser(data));
     navigate("/signin");
   };
 

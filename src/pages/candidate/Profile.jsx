@@ -44,15 +44,15 @@ const Profile = () => {
 
       <div className="w-full max-w-6xl">
 
-        {user?.role === "Candidate" ? (
-          user?.appliedjob?.length > 0 ? (
+        {user?.role === "Candidate" || user?.role === "recruiter" ? (
+          user?.appliedJobs?.length > 0 ? (
             <div className="space-y-10">
 
               <h2 className="text-4xl font-bold text-center text-emerald-400 tracking-wide">
                 Your Job Applications
               </h2>
 
-              {user.appliedjob.map((job, index) => (
+              {user?.appliedJobs?.map((job, index) => (
                 <div
                   key={index}
                   className="bg-white/10 border border-white/20 shadow-lg rounded-2xl p-6 
@@ -62,25 +62,25 @@ const Profile = () => {
                   <div className="space-y-2 text-white/80">
                     <p className="text-lg">
                       <span className="font-semibold text-emerald-300">Name:</span>{" "}
-                      {job.name}
+                      {job?.name}
                     </p>
                     <p>
                       <span className="font-semibold text-orange-300">Company:</span>{" "}
-                      {job.company}
+                      {job?.company}
                     </p>
                     <p>
                       <span className="font-semibold text-blue-300">Role:</span>{" "}
-                      {job.role}
+                      {job?.role}
                     </p>
                     <p>
                       <span className="font-semibold text-purple-300">Education:</span>{" "}
-                      {job.education}
+                      {job?.education}
                     </p>
                   </div>
 
                   <div className="self-start md:self-center">
                     <a
-                      href={job.resume}
+                      href={job?.resume}
                       target="_blank"
                       rel="noreferrer"
                       className="text-emerald-300 text-sm underline"
