@@ -3,6 +3,8 @@ import { applyJob } from "../../apis/api";
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useParams } from "react-router-dom";
+import { asyncgetMe } from '../../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -10,6 +12,7 @@ import { useParams } from "react-router-dom";
 const Apply = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   console.log(id)
@@ -17,6 +20,7 @@ const submitHandler = async (data) => {
   try {
 
     await applyJob(id, data);
+        dispatch(asyncgetMe()); 
 
     alert("Applied Successfully");
 

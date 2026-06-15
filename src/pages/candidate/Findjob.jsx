@@ -40,6 +40,10 @@ console.log(jobs)
     dispatch(asyncDeleteJob(id));
   };
 
+      if (!user) {
+  return <h1 className="text-3xl text-zinc-700">Loading...</h1>;
+}
+
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
       <div
@@ -84,9 +88,9 @@ console.log(jobs)
 
       <div className="flex flex-wrap justify-center gap-10 mt-10 px-4 relative z-20">
         {filterjobs.length > 0 ? (
-          filterjobs.map((job) => (
+          filterjobs.map((job, idx) => (
             <div
-              key={job?._id}
+              key={idx}
               className="
                 w-full sm:w-[85%] md:w-[45%] lg:w-[30%]
                 bg-[#0B0F19]/80 border border-white/10 
@@ -95,7 +99,7 @@ console.log(jobs)
                 transition-all duration-500
               "
             >
-              <div className="flex items-center gap-4">
+              <div key={idx} className="flex items-center gap-4">
                 <img
                   src={job?.logo}
                   className="w-16 h-16 rounded-xl bg-white/10 p-2"

@@ -15,9 +15,9 @@ export const asyncRegisterUser = (userData) => async (dispatch) => {
 };
 
 export const asyncgetMe = () => async (dispatch) => {
+
   try {
     const data = await getMe();
-    console.log("getMe response:", data.user);
   
     const userData = data.user;
     dispatch(setUser(userData));

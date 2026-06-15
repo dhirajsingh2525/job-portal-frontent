@@ -1,5 +1,5 @@
-import { getAllJobs, createJob, updateJob, deleteJob } from "../../apis/api";
-
+import { getAllJobs, createJob, updateJob, deleteJob, deleteApplications, getRecruiterApplications } from "../../apis/api";
+import { setApplications } from "../reducers/applicationSlice";
 import { loadjobs } from "../reducers/jobSlice";
 
 export const asyncLoadJobs = () => async (dispatch) => {
@@ -37,6 +37,27 @@ export const asyncDeleteJob = (id) => async (dispatch) => {
     await deleteJob(id);
 
     dispatch(asyncLoadJobs());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const asyncLoadApplications = () => async (dispatch) => {
+  try {
+    const data = await getRecruiterApplications();
+    dispatch(setApplications(data.applications));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const asyncDeleteApplication = (id) => async (dispatch) => {
+  try {
+    await deleteApplications(id);
+
+    dispatch(asyncLoadApplications());
+
   } catch (error) {
     console.log(error);
   }

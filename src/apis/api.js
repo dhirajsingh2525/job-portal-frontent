@@ -2,13 +2,14 @@ import axios from "axios";
 
 
 const api = axios.create({
+  // baseURL: "http://localhost:5000/api",
   baseURL: "https://job-portal-plateform.onrender.com/api",
   withCredentials: true
 });
 
 // Register
 export const registerUser = async (userData) => {
-  const { data } = await api.post("/register", userData);
+  const { data } = await api.post("/register", userData)
   return data;
 };
 
@@ -86,4 +87,21 @@ export const applyJob = async (jobId, formData) => {
   );
 
   return data;
+};
+
+export const getRecruiterApplications = async () => {
+  const { data } = await api.get(
+    "/applications/recruiter"
+  );
+
+  return data;
+};
+
+
+export const deleteApplications = async (id) => {
+  const res = await api.delete(
+    `/applications/${id}`
+  );
+
+  return res;
 };

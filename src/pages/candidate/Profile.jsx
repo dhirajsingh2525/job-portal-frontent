@@ -44,7 +44,7 @@ const Profile = () => {
 
       <div className="w-full max-w-6xl">
 
-        {user?.role === "Candidate" || user?.role === "recruiter" ? (
+        {user?.role === "Candidate" ? (
           user?.appliedJobs?.length > 0 ? (
             <div className="space-y-10">
 
